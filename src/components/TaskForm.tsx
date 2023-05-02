@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Task } from '../interfaces/Task';
+import {v4 as uuid} from 'uuid'
 
 const TaskForm = ({
 	active,
 	toogle,
+	addTask
 }: {
 	active: boolean;
-	toogle: () => void;
-}) => {
+		toogle: () => void;
+		addTask: (task: Task) => void;
+	}) => {
+	const [title, setTitle] = useState('')
+	const [description, setDescription] = useState('')
+
+	const handleSubmit = (e: MouseEvent): void => {
+		e.preventDefault();
+		const newTask: Task = {
+			id: uuid(),
+			title,
+			description,
+			isDone: false,
+		};
+		addTask(newTask);
+		setTitle('');
+		setDescription('');
+	};
+
 	return createPortal(
 		<div
 			className={`h-screen w-screen fixed top-0 ${
@@ -28,6 +49,9 @@ const TaskForm = ({
 							type='text'
 							name='title'
 							placeholder=' '
+							onChange={(e) => setTitle(e.target.value)}
+							value={title}
+							required
 						/>
 						<label
 							className='absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 text-sm
@@ -40,6 +64,9 @@ const TaskForm = ({
 							className='h-48 peer block border-b appearance-none pt-2.5 px-0 w-full focus:outline-none focus:ring-0 text-sm border-gray-500 bg-transparent text-black focus:border-violet-500 resize-none dark:border-b-white dark:text-white'
 							name='title'
 							placeholder=' '
+							onChange={(e) => setDescription(e.target.value)}
+							value={description}
+							required
 						/>
 						<label
 							className='absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 text-sm
@@ -48,7 +75,9 @@ const TaskForm = ({
 						</label>
 					</div>
 					<div className='w-64'>
-						<button className='bg-violet-500 w-full hover:bg-violet-600 text-white py-2 px-4 rounded'>
+						<button
+							onClick={handleSubmit}
+							className='bg-violet-500 w-full hover:bg-violet-600 text-white py-2 px-4 rounded'>
 							Guardar
 						</button>
 					</div>
