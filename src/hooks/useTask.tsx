@@ -33,8 +33,7 @@ export const useTask = () => {
 	}, []);
 
 	useEffect(() => {
-		window.localStorage.setItem('tasks', JSON.stringify(tasks));
-		console.log(window.localStorage.getItem('tasks'));
+    window.localStorage.setItem('tasks', JSON.stringify(tasks));
 	}, [tasks]);
 
 	return { addTask, completeTask, deleteTask, tasks };

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import moon from '../assets/moon.svg';
 import sun from '../assets/sun.svg';
 
-const initialDarkmode = document.documentElement.className.includes('dark');
+const initialDarkmode = document.documentElement.className.includes('dark')!;
 
 const NavBar = ({ toogle }: { toogle: () => void }) => {
-	const [darkmode, setDarkmode] = useState(initialDarkmode);
+	const [darkmode, setDarkmode] = useState(localStorage.theme === 'dark' || initialDarkmode);
 
 	useEffect(() => {
 		if (darkmode) {
