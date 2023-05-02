@@ -11,7 +11,7 @@ function App() {
 	};
 
 	return (
-		<div className='h-screen w-screen dark:bg-zinc-900'>
+		<div className='h-screen w-screen '>
 			<NavBar toogle={toogle} />
 			<TaskList />
 			<TaskForm

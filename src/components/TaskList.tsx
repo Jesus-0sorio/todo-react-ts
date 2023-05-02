@@ -3,7 +3,7 @@ import Search from './Search';
 
 const TaskList = () => {
 	return (
-		<div className='w-full py-3'>
+		<div className='w-full py-3 dark:bg-zinc-900'>
 			<div className='w-full flex justify-center h-24 pb-3 items-center'>
 				<Search />
 			</div>
