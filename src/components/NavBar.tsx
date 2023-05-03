@@ -18,7 +18,7 @@ const NavBar = ({ toogle }: { toogle: () => void }) => {
 	}, [darkmode]);
 
 	return (
-		<nav className='w-full px-3 items-center justify-between border-b h-14 flex dark:bg-transparent dark:border-b-white'>
+		<nav className='w-full px-3 items-center justify-between border-b-gray-600 border-b h-14 flex dark:bg-transparent dark:border-b-white'>
 			<div className='flex items-center'>
 				<h1 className='text-2xl text-violet-500 dark:text-white'>ToDo</h1>
 				<img

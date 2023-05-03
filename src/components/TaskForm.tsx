@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { v4 as uuid } from 'uuid';
 import { Task } from '../interfaces/Task';
-import {v4 as uuid} from 'uuid'
 
 const TaskForm = ({
 	active,
 	toogle,
-	addTask
+	addTask,
 }: {
 	active: boolean;
-		toogle: () => void;
-		addTask: (task: Task) => void;
-	}) => {
-	const [title, setTitle] = useState('')
-	const [description, setDescription] = useState('')
+	toogle: () => void;
+	addTask: (task: Task) => void;
+}) => {
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
 
-	const handleSubmit = (e: MouseEvent): void => {
+	const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = (
+		e
+	): void => {
 		e.preventDefault();
 		const newTask: Task = {
 			id: uuid(),

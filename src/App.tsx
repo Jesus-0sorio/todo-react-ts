@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavBar from './components/NavBar';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
@@ -6,7 +6,7 @@ import { useTask } from './hooks/useTask';
 
 function App() {
 	const [active, setActive] = useState<boolean>(true);
-	const { tasks, addTask, deleteTask, completeTask } = useTask();
+	const { tasks, addTask, deleteTask, completeTask, filterTask, searchTask } = useTask();
 	const toogle = (): void => {
 		setActive(!active);
 	};
@@ -18,6 +18,8 @@ function App() {
 				tasks={tasks}
 				deleteTask={deleteTask}
 				completeTask={completeTask}
+				filterTask={filterTask}
+				searchTask={searchTask}
 			/>
 			<TaskForm
 				active={active}

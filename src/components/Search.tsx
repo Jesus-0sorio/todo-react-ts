@@ -1,7 +1,21 @@
-const Search = () => {
+import { Filter } from '../types/Task';
+
+const Search = ({
+	tasksFiltered,
+	handleSearch,
+}: {
+	tasksFiltered: (status: Filter) => void;
+	handleSearch: (search: string) => void;
+}) => {
+	//const [search, setSearch] = useState<string>('');
+	const handleStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
+		tasksFiltered(e?.target?.value as Filter);
+	};
+
 	return (
-		<div className='w-[23rem]'>
+		<form className='w-[23rem]'>
 			<input
+				onChange={(e) => handleSearch(e.target.value)}
 				type='text'
 				className='w-full mb-2 h-9 rounded border border-gray-500 focus:outline-none px-2 dark:bg-violet-500 dark:border-transparent dark:text-white dark:placeholder:text-white'
 				placeholder='Buscar tarea'
@@ -12,6 +26,8 @@ const Search = () => {
 						<input
 							type='radio'
 							name='typeTask'
+							value='all'
+							onChange={handleStatus}
 							className='bg-gray-100 border-gray-300 rounded focus:outline-none'
 							defaultChecked
 						/>
@@ -25,6 +41,8 @@ const Search = () => {
 						<input
 							type='radio'
 							name='typeTask'
+							value='complete'
+							onChange={handleStatus}
 							className='bg-gray-100 border-gray-300 rounded focus:outline-none'
 						/>
 						<label className='w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white'>
@@ -37,6 +55,8 @@ const Search = () => {
 						<input
 							type='radio'
 							name='typeTask'
+							value='incompleted'
+							onChange={handleStatus}
 							className='bg-gray-100 border-gray-300 rounded focus:outline-none'
 						/>
 						<label className='w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white'>
@@ -45,7 +65,7 @@ const Search = () => {
 					</div>
 				</li>
 			</ul>
-		</div>
+		</form>
 	);
 };
 
